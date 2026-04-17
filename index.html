@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kjk의 경기규칙 IFAB Q&A</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* A simple futuristic text shadow glow effect that can be applied via JS if needed, but Tailwind classes will be preferred */
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+        .text-glow {
+            text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+        }
+        .card-glow {
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2), 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+        }
+        .accordion-content.open {
+            max-height: 2000px; /* Large enough to fit content */
+            transition: max-height 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-gray-200 font-sans">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold text-cyan-400 text-glow animate-pulse">kjk의 경기규칙 IFAB Q&A ⚽</h1>
+            <p class="text-xl md:text-2xl text-fuchsia-400 mt-4">25-26 변경규칙</p>
+        </header>
+
+        <main id="rules-container" class="space-y-4">
+            <!-- Rules will be dynamically inserted here by JavaScript -->
+        </main>
+
+        <footer class="text-center mt-12 py-6 border-t border-cyan-700">
+            <p class="text-gray-400">내용의 출처는 "IFAB의 Q&A"</p>
+        </footer>
+    </div>
+
+    <script>
+        const rulesData = [
+            {
+                title: "골키퍼가 8초 제한 시간 종료 직전에 볼을 방출하는 상황에 대한 판정",
+                englishSituation: "A goalkeeper catches the ball inside their penalty area and is not challenged by any opponent, so the referee starts the eight-second countdown. What is the correct decision if the goalkeeper is kicking or throwing the ball just as the countdown reaches zero?",
+                englishDecision: "The intention of the Law is to prevent time-wasting. If the goalkeeper is in the process of releasing the ball from their hands as the count ends, this is considered to be within the spirit of the Law, and the referee should allow play to continue.",
+                koreanSituation: "골키퍼가 자신의 페널티 에어리어 안에서 볼을 잡았고 상대 선수의 도전이 없어서, 주심이 8초 카운트다운을 시작했다. 카운트다운이 0에 도달하는 순간 골키퍼가 볼을 킥하거나 던진다면 올바른 판정은 무엇인가?",
+                koreanDecision: "규칙의 의도는 시간 낭비를 방지하는 것이다. 카운트다운이 끝날 때 골키퍼가 손에서 볼을 방출하는 과정에 있다면, 이는 규칙의 정신 안에 있는 것으로 간주하며 주심은 플레이를 계속하도록 허용해야 한다.",
+                keyPoint: "제5조 주심의 결정: 주심은 경기규칙과 ‘경기의 정신’에 따라 최선을 다해 판정해야 하며 재량권을 갖는다\n8초 제한의 적용: 주심은 골키퍼가 볼을 컨트롤하는 8초 제한의 마지막 5초를 시각적으로 카운트다운하며, 규칙의 정신에 따라 엄격함과 유연성을 발휘한다"
+            },
+            {
+                title: "심판진을 맞고 볼의 소유권이 바뀌었을 때의 드롭볼 재개",
+                englishSituation: "The ball is kicked by a Team A player and is going to a Team B player when it deflects off the referee to another Team A player rather than to the Team B player. The Team A player immediately creates a promising attack for their team. What is the correct decision?",
+                englishDecision: "Play is stopped and restarted with a dropped ball for one player of Team B, as it is clear to the referee that Team B would have gained possession if the ball had not deflected off the referee. The ball is dropped at its position when play was stopped.",
+                koreanSituation: "팀 A 선수가 찬 볼이 팀 B 선수에게 가고 있었으나, 주심을 맞고 팀 B 선수가 아닌 다른 팀 A 선수에게 굴절되었다. 그 팀 A 선수는 즉시 자신의 팀을 위해 유망한 공격을 시작했다. 올바른 판정은 무엇인가?",
+                koreanDecision: "플레이를 중단하고 팀 B의 선수 한 명을 위한 드롭볼로 재개한다. 주심에게는 만약 볼이 주심에게 굴절되지 않았다면 팀 B가 소유권을 얻었을 것이 명확하기 때문이다. 드롭볼은 플레이가 중단되었을 때의 위치에서 실시한다.",
+                keyPoint: "제9조 볼의 아웃 오브 플레이: 볼이 심판진을 맞고 경기장 안에 있는 상태에서 소유 팀이 바뀌거나 유망한 공격이 시작되면 볼은 아웃 오브 플레이다\n제8조 드롭볼 절차(25/26 개정): 소유권이 상대팀에게 넘어갔을 가능성이 명백한 경우, 해당 팀에게 드롭볼을 실시하는 것이 더 공정하다"
+            },
+            {
+                title: "골키퍼가 8초 이상 볼을 소유(바운드 포함)했을 때의 처벌",
+                englishSituation: "A goalkeeper holds the ball inside their penalty area for eight seconds, then bounces it several times on the ground and catches it again. What is the correct decision?",
+                englishDecision: "The goalkeeper is considered to be in control of the ball with the hand(s)/arm(s) while bouncing it, so this bouncing does not stop or reset the eight-second countdown. Since the goalkeeper controlled the ball longer than the time limit, the referee awards a corner kick to the opposing team, taken from the side closest to the goalkeeper’s position when penalised.",
+                koreanSituation: "골키퍼가 자신의 페널티 에어리어 안에서 8초 동안 볼을 잡고 있다가, 지면에 여러 번 볼을 바운드한 후 다시 잡았다. 올바른 판정은 무엇인가?",
+                koreanDecision: "골키퍼가 볼을 바운드하는 동안에도 손/팔로 볼을 컨트롤하는 것으로 간주하므로, 이러한 바운드 행위는 8초 카운트다운을 중단시키거나 리셋하지 않는다. 골키퍼가 제한 시간보다 오래 볼을 컨트롤했으므로, 주심은 상대팀에게 코너킥을 부여하며, 처벌 시 골키퍼의 위치에서 가장 가까운 쪽에서 실시한다.",
+                keyPoint: "제12조 볼 컨트롤 정의: 볼을 지면에 바운드하는 동안에도 골키퍼가 손/팔로 볼을 컨트롤하는 것으로 간주한다\n제12조 개정사항(25/26): 골키퍼가 8초를 초과하여 볼을 컨트롤하면 간접 프리킥 대신 코너킥이 주어지며, 처벌 당시 골키퍼와 가장 가까운 코너에서 재개한다"
+            },
+            {
+                title: "볼 소유권이 불분명한 상태에서 볼 파손 시 재개 방법",
+                englishSituation: "A player kicks the ball towards a team-mate, but the pass does not reach them, or any other player, because the ball suddenly bursts in the middle of the field. What is the correct decision if the referee cannot determine which team would have gained possession, as there are several players from both teams near the ball?",
+                englishDecision: "The referee stops play and replaces the defective ball. Play is restarted with a dropped ball for one player of the team that last touched the ball, at the position where the ball was when play was stopped.",
+                koreanSituation: "한 선수가 팀 동료를 향해 볼을 찼으나, 볼이 경기장 중앙에서 갑자기 터지는 바람에 동료나 다른 어떤 선수에게도 도달하지 못했다. 볼 근처에 양 팀의 여러 선수가 있어 주심이 어느 팀이 소유권을 얻었을지 결정할 수 없다면 올바른 판정은 무엇인가?",
+                koreanDecision: "주심은 플레이를 중단하고 결함이 있는 볼을 교체한다. 플레이가 중단되었을 때 볼이 있던 위치에서, 볼을 마지막으로 터치한 팀의 선수 한 명을 위한 드롭볼로 플레이를 재개한다.",
+                keyPoint: "제2조 결함이 있는 볼의 교체: 볼에 결함이 발생하면 경기를 중단하고 드롭볼로 재개한다\n제8조 드롭볼 절차: 소유권이 명확하지 않은 경우, 마지막으로 볼을 터치한 팀의 선수에게 플레이가 중단된 위치에서 드롭볼을 실시한다"
+            },
+            {
+                title: "골키퍼의 8초 초과 소유에 대한 새로운 재개 규칙",
+                englishSituation: "What is the correct decision if a goalkeeper holds the ball with their hands/arms inside their penalty area for more than eight seconds before releasing the ball?",
+                englishDecision: "The referee awards a corner kick to the opposing team which is taken from the side closest to the goalkeeper’s position when penalised. No disciplinary action is taken, unless the goalkeeper repeatedly commits the offence (caution, yellow card).",
+                koreanSituation: "골키퍼가 볼을 방출하기 전 자신의 페널티 에어리어 안에서 8초를 초과하여 손/팔로 볼을 잡고 있다면 올바른 판정은 무엇인가?",
+                koreanDecision: "주심은 처벌 시 골키퍼의 위치에서 가장 가까운 쪽에서 실시하는 코너킥을 상대팀에게 부여한다. 골키퍼가 반칙을 반복적으로 범하지 않는 한(경고, 옐로카드), 별도의 징계 조치는 취하지 않는다.",
+                keyPoint: "제12조 파울과 불법행위(개정): 골키퍼의 8초 초과 볼 컨트롤에 대한 처벌은 이제 코너킥이며, 주심은 마지막 5초를 손을 들어 시각적으로 알린다"
+            },
+            {
+                title: "공격수가 골키퍼의 볼 방출을 방해하여 시간이 초과된 경우",
+                englishSituation: "An attacker prevents the goalkeeper from releasing the ball from the hands, causing the goalkeeper to hold the ball for more than eight seconds. What is the correct decision?",
+                englishDecision: "Unless the advantage can be played, the referee stops play and awards the goalkeeper’s team: a direct free kick – if the attacker touched the goalkeeper; an indirect free kick – if no contact was made. The attacker is not cautioned, unless the referee judges that their offence was reckless or stopped/interfered with a promising attack (yellow card).",
+                koreanSituation: "공격수가 골키퍼가 손에서 볼을 방출하는 것을 방해하여, 골키퍼가 8초 이상 볼을 소유하게 만들었다. 올바른 판정은 무엇인가?",
+                koreanDecision: "어드밴티지를 적용할 수 없는 한, 주심은 플레이를 중단하고 골키퍼 팀에게 다음을 부여한다: 공격수가 골키퍼를 터치했다면 직접 프리킥; 신체 접촉이 없었다면 간접 프리킥. 주심이 해당 반칙을 무모하거나 유망한 공격을 저지/방해했다고 판단하지 않는 한 공격수에게 경고를 주지 않는다.",
+                keyPoint: "제12조 골키퍼 방해: 골키퍼가 볼을 방출할 때 상대 선수는 도전할 수 없으며, 방해 시 접촉 여부에 따라 직접 또는 간접 프리킥이 주어진다"
+            },
+            {
+                title: "골키퍼가 넘어져 있는 시간과 8초 규칙의 관계",
+                englishSituation: "A goalkeeper easily catches a weak shot and then falls to the ground. The goalkeeper stays there for a few seconds (without being challenged by any opponent) and then stands up to release the ball. What is the referee’s decision?",
+                englishDecision: "The eight seconds started when the goalkeeper had control of the ball, not when the goalkeeper stood up. If the referee judged that controlling the ball with the hands/arms took longer than the time limit, the opposing team is awarded a corner kick.",
+                koreanSituation: "골키퍼가 약한 슛을 쉽게 잡은 뒤 지면에 넘어졌다. 골키퍼는 (상대 선수의 도전 없이) 그곳에 몇 초간 머물다가 볼을 방출하기 위해 일어났다. 주심의 판정은 무엇인가?",
+                koreanDecision: "8초는 골키퍼가 일어섰을 때가 아니라 볼을 컨트롤하기 시작했을 때부터 시작된다. 만약 주심이 손/팔로 볼을 컨트롤한 시간이 제한 시간을 초과했다고 판단했다면, 상대팀에게 코너킥이 주어진다.",
+                keyPoint: "제12조 8초 제한 시점: 8초 제한은 골키퍼가 볼의 컨트롤을 얻은 시점부터 계산하며, 지면에 넘어졌더라도 컨트롤 상태라면 시간은 흐른다"
+            },
+            {
+                title: "심각한 부상으로 인한 중단 시 볼 소유권을 고려한 재개",
+                englishSituation: "An attacker (Team A) takes a shot which is blocked by a defender (Team B). The ball bounces away, remains on the field of play outside the penalty area and is chased by one player from Team A. However, the referee stops play before the Team A player touches the ball because the defender, who was hit by the ball, is seriously injured. What is the correct restart of play?",
+                englishDecision: "Play is restarted with a dropped ball for Team A (not for Team B that last touched the ball) because it was clear to the referee that Team A would have gained possession if play had continued. The ball is dropped at its position when play was stopped.",
+                koreanSituation: "공격수(팀 A)가 슛을 했으나 수비수(팀 B)에 의해 차단되었다. 볼은 튕겨 나가 페널티 에어리어 밖 경기장 안에 머물렀고 팀 A의 한 선수가 쫓아갔다. 그러나 볼에 맞은 수비수가 심각하게 부상당했기 때문에, 팀 A 선수가 볼을 터치하기 전 주심이 플레이를 중단시켰다. 올바른 플레이 재개 방법은 무엇인가?",
+                koreanDecision: "팀 A를 위한 드롭볼로 플레이를 재개한다(볼을 마지막으로 터치한 팀 B가 아님). 플레이가 계속되었다면 팀 A가 소유권을 얻었을 것이 주심에게 명확했기 때문이다. 드롭볼은 플레이가 중단되었을 때 볼의 위치에서 실시한다.",
+                keyPoint: "제8조 드롭볼(25/26 개정): 플레이 중단 시 볼을 마지막으로 터치한 팀이 아니더라도, 중단되지 않았다면 볼을 소유했을 것이 명확한 팀에게 드롭볼을 실시하는 것이 더 공정하다"
+            },
+            {
+                title: "골키퍼가 볼을 던질 때의 오프사이드 판정 기준 시점",
+                englishSituation: "A goalkeeper catches the ball and attempts to start a quick counter-attack by throwing the ball to a team-mate near the halfway line. At which moment of the goalkeeper’s contact with the ball is the team-mate’s offside position determined?",
+                englishDecision: "When the goalkeeper throws the ball, the offside position is determined at the moment the goalkeeper releases the ball, as this last touch provides a clear and consistent reference point.",
+                koreanSituation: "골키퍼가 볼을 잡아 중앙선 근처의 팀 동료에게 던져서 빠른 역습을 시작하려고 한다. 골키퍼와 볼의 접촉 중 어느 순간에 동료의 오프사이드 위치가 결정되는가?",
+                koreanDecision: "골키퍼가 볼을 던질 때, 오프사이드 위치는 골키퍼가 볼을 방출하는 순간에 결정된다. 이 마지막 접촉이 명확하고 일관된 기준점을 제공하기 때문이다.",
+                keyPoint: "제11조 오프사이드 판정 시점(개정): 일반적으로 볼을 플레이/터치한 첫 번째 접촉이 기준이나, 골키퍼가 던질 때는 마지막 접촉 순간(방출 시점)을 기준으로 한다"
+            },
+            {
+                title: "교체 선수가 경기장을 벗어나고 있는 볼을 터치했을 때",
+                englishSituation: "An attacking player (Team A) takes a shot which clearly goes wide, missing the goal by several metres. As the ball is clearly going out of play for a goal kick, a substitute from Team B, warming up near the goal line, stops the ball with their foot on the goal line. What is the correct decision if no other player has the chance to touch the ball before it leaves the field of play?",
+                englishDecision: "The substitute touched the ball while it was still in play but when it is clearly leaving the field of play, without any intention of unfairly interfering with play. In this case, the referee awards an indirect free kick to Team A at the position where the substitute touched the ball. There is no disciplinary sanction.",
+                koreanSituation: "공격 선수(팀 A)가 슛을 했으나 골문을 몇 미터 벗어나 명백히 빗나갔다. 볼이 골킥이 되기 위해 명백히 경기장 밖으로 나가고 있을 때, 골라인 근처에서 워밍업 중이던 팀 B의 교체 선수가 골라인 위에서 발로 볼을 멈췄다. 볼이 경기장을 벗어나기 전 다른 어떤 선수도 볼을 터치할 기회가 없다면 올바른 판정은 무엇인가?",
+                koreanDecision: "해당 교체 선수는 볼이 아직 인플레이 상황이지만 명백히 경기장을 벗어나고 있을 때, 부당하게 플레이를 방해하려는 의도 없이 볼을 터치했다. 이 경우 주심은 교체 선수가 볼을 터치한 위치에서 팀 A에게 간접 프리킥을 부여한다. 징계 처벌은 없다.",
+                keyPoint: "제9조 인플레이 상황(개정): 경기 재개를 빠르게 하려는 의도로 경기장을 벗어나는 볼을 터치한 경우, 징계 없이 간접 프리킥으로 처벌한다"
+            },
+            {
+                title: "지도자가 경기장을 벗어나는 볼을 터치했을 때",
+                englishSituation: "A player from Team A kicks the ball which then touches an opponent (Team B) and is clearly going out of play for a throw-in. While the ball is still on the field of play, very close to the touchline, a coach from Team A stops it in an attempt to help their team quickly restart play. What is the correct decision?",
+                englishDecision: "The coach made contact with the ball while it was still in play but when it was clearly leaving the field, without any intention of unfairly interfering with play. In this case, the referee awards an indirect free kick to Team B at the position where the coach touched the ball. There is no disciplinary sanction, unless the coach has persistently left the technical area, which would be cautioned (yellow card).",
+                koreanSituation: "팀 A의 선수가 찬 볼이 상대(팀 B)를 맞고 스로인이 되기 위해 명백히 경기장 밖으로 나가고 있다. 볼이 터치라인과 아주 가까운 경기장 내에 있는 동안, 팀 A의 지도자가 자기 팀의 빠른 경기 재개를 돕기 위해 볼을 멈췄다. 올바른 판정은 무엇인가?",
+                koreanDecision: "지도자는 볼이 여전히 인플레이 상황이지만 명백히 필드를 벗어나고 있을 때, 부당하게 플레이를 방해하려는 의도 없이 볼과 접촉했다. 이 경우 주심은 지도자가 볼을 터치한 위치에서 팀 B에게 간접 프리킥을 부여한다. 지속적으로 기술 지역을 벗어난 경우가 아니라면(이 경우 경고/옐로카드) 징계 처벌은 없다.",
+                keyPoint: "제9조/제12조: 외부 인원이 경기장을 벗어나는 볼을 터치한 경우 징계 없는 간접 프리킥을 적용하지만, 기술 지역 이탈 등 별도의 반칙은 징계 대상이 될 수 있다"
+            },
+            {
+                title: "부심을 맞고 유망한 공격이 시작되었을 때",
+                englishSituation: "A player of Team A kicks the ball towards a team-mate. The ball moves quickly on the ground and deflects off an assistant referee who is standing on the touchline. As a result, the ball remains on the field of play and is then controlled by another Team A player who starts a promising attack. What is the correct decision?",
+                englishDecision: "The ball is out of play because it touched a match official and Team A started a promising attack. In this case, the referee restarts play with a dropped ball for Team A at its position when the referee stopped play (a throw-in cannot be awarded because the ball did not leave the field).",
+                koreanSituation: "팀 A 선수가 팀 동료를 향해 볼을 찼다. 볼이 지면을 따라 빠르게 이동하다가 터치라인에 서 있던 부심을 맞고 굴절되었다. 그 결과 볼은 경기장 안에 머물렀고, 다른 팀 A 선수가 볼을 컨트롤하여 유망한 공격을 시작했다. 올바른 판정은 무엇인가?",
+                koreanDecision: "볼이 심판진에게 닿았고 팀 A가 유망한 공격을 시작했으므로 볼은 아웃 오브 플레이다. 이 경우 주심은 플레이를 중단시킨 지점의 위치에서 팀 A를 위한 드롭볼로 플레이를 재개한다(볼이 경기장을 나가지 않았으므로 스로인을 부여할 수 없다).",
+                keyPoint: "제9조 심판진 접촉: 볼이 심판진(주심, 부심 등)을 맞고 경기장 내에 있으면서 유망한 공격이 시작되거나 소유 팀이 바뀌면 플레이를 중단하고 드롭볼로 재개한다"
+            },
+            {
+                title: "관중의 휘슬 소리에 볼을 손으로 잡았을 때",
+                englishSituation: "A player is running with the ball near the halfway line but suddenly stops and picks it up with their hands because someone in the crowd has blown a whistle (not the referee or anyone on the team lists). What is the correct decision?",
+                englishDecision: "The referee stops play and drops the ball for the player or one of their team-mates at its position when play was stopped.",
+                koreanSituation: "선수가 중앙선 근처에서 볼을 가지고 달리고 있었으나, 관중석의 누군가가 휘슬을 불었기 때문에(주심이나 팀 명단의 인원이 아님) 갑자기 멈춰서 볼을 손으로 집어 들었다. 올바른 판정은 무엇인가?",
+                koreanDecision: "주심은 플레이를 중단시키고, 중단되었을 때의 위치에서 해당 선수 또는 그의 팀 동료 중 한 명에게 드롭볼을 실시한다.",
+                keyPoint: "제5조 외부의 방해: 관중이 휘슬을 불어 플레이를 방해한 경우 플레이를 중단하고 드롭볼로 재개한다. 선수가 이를 주심의 신호로 착각하여 볼을 잡은 경우 핸드볼로 처벌하지 않는다"
+            },
+            {
+                title: "중앙선 근처에서 패스 도중 볼 파손 시 재개",
+                englishSituation: "A player (Team A) is in the middle of the field and attempts to pass the ball to a team-mate (Team A) near the halfway line. As the ball reaches the team-mate it bursts. What is the correct decision?",
+                englishDecision: "The referee stops play, has the ball changed and then drops the ball for one player of Team A as they would have gained the possession if the ball had not burst. The ball is dropped at its position when play was stopped.",
+                koreanSituation: "플레이어(팀 A)가 경기장 중앙에서 중앙선 근처의 팀 동료(팀 A)에게 패스를 시도했다. 볼이 동료에게 도달했을 때 터졌다. 올바른 판정은 무엇인가?",
+                koreanDecision: "주심은 플레이를 중단하고 볼을 교체하게 한 뒤, 볼이 터지지 않았다면 소유권을 얻었을 팀 A의 선수 한 명에게 드롭볼을 실시한다. 드롭볼은 플레이가 중단되었을 때 볼의 위치에서 실시한다.",
+                keyPoint: "제2조/제8조: 경기 중 볼 파손 시 결함이 있는 볼을 교체하고, 소유권이 명확한 팀에게 드롭볼로 재개한다"
+            },
+            {
+                title: "골킥 후 주심을 맞고 골문으로 향하는 볼을 골키퍼가 손으로 막았을 때",
+                englishSituation: "After a goal kick has been taken by the goalkeeper, the ball touches the referee outside the penalty area, remains on the field of play and bounces back towards the goal. The goalkeeper handles the ball to prevent it from entering the goal. The referee stops play at this point. What is the correct decision?",
+                englishDecision: "The referee stops play and drops the ball for the goalkeeper in their penalty area as that was the ball’s position when play was stopped.",
+                koreanSituation: "골키퍼가 골킥을 실시한 후, 볼이 페널티 에어리어 밖의 주심을 맞고 경기장 안에 머물며 골문 쪽으로 다시 튀어 왔다. 골키퍼가 볼이 골문에 들어가는 것을 막기 위해 볼을 손으로 다루었다. 주심은 이 지점에서 플레이를 중단시켰다. 올바른 판정은 무엇인가?",
+                koreanDecision: "주심은 플레이를 중단하고, 중단되었을 때 볼의 위치였던 페널티 에어리어 내에서 골키퍼를 위한 드롭볼을 실시한다.",
+                keyPoint: "제8조/제9조: 심판진 접촉으로 볼의 궤적이 바뀌어 골문으로 향하는 경우 플레이를 중단한다. 볼이 페널티 에어리어 안에 있었다면 골키퍼에게 드롭볼을 실시한다"
+            },
+            {
+                title: "심각한 부상 치료를 위해 중단된 경기의 재개 위치",
+                englishSituation: "When the ball is in play in the middle of the field, the referee notices that a player lies on the ground and stops play because he/she thinks that the player is seriously injured. The player leaves the field for treatment. How is play restarted?",
+                englishDecision: "Play is restarted with a dropped ball for one player of the team that has or would have gained possession if this can be determined by the referee; otherwise, it is dropped for one player of the team that last touched it. The ball is dropped at its position when play was stopped.",
+                koreanSituation: "경기장 중앙에서 볼이 인플레이 상황일 때, 주심은 한 선수가 지면에 누워있는 것을 인지하고 그 선수가 심각하게 부상당했다고 생각하여 플레이를 중단시켰다. 선수는 치료를 위해 경기장을 떠났다. 플레이는 어떻게 재개되는가?",
+                koreanDecision: "주심이 판단할 수 있는 경우, 소유권을 가졌거나 가졌을 것으로 보이는 팀의 선수 한 명을 위한 드롭볼로 재개한다. 그렇지 않은 경우 마지막으로 터치한 팀의 선수에게 실시하며, 위치는 중단 당시 볼의 위치이다.",
+                keyPoint: "제8조 드롭볼(개정): 페널티 에어리어 밖에서의 드롭볼은 플레이 중단 시 볼의 소유권(또는 가졌을 것으로 보이는 팀)을 고려하여 중단된 위치에서 실시한다"
+            },
+            {
+                title: "심판진 접촉으로 볼 소유권이 바뀐 경우의 드롭볼",
+                englishSituation: "A ball touches a match official (outside the penalty area), remains on the field of play and the team in possession of the ball changes. What is the referee’s decision?",
+                englishDecision: "The ball is out of play and play is restarted with a dropped ball for the team that would have gained possession, if that is clear; otherwise to the team that last touched the ball. The ball is dropped at its position when play was stopped.",
+                koreanSituation: "볼이 (페널티 에어리어 밖의) 심판진에게 닿았고, 경기장 안에 머물렀으나 볼의 소유 팀이 바뀌었다. 주심의 판정은 무엇인가?",
+                koreanDecision: "볼은 아웃 오브 플레이다. 명확하다면 소유권을 얻었을 팀에게, 그렇지 않다면 마지막으로 볼을 터치한 팀에게 드롭볼을 실시하여 플레이를 재개한다. 드롭볼은 플레이가 중단되었을 때의 위치에서 실시한다.",
+                keyPoint: "제9조/제8조: 심판진 접촉으로 소유권 변경 시 드롭볼을 실시하며, 25/26 개정 규칙에 따라 소유권을 얻었을 것으로 보이는 팀에게 주는 것이 우선이다"
+            },
+            {
+                title: "골킥 후 주심 접촉으로 상대에게 소유권이 넘어간 경우",
+                englishSituation: "After a goal kick has been taken by Team A, the ball touches the referee outside the penalty area, remains on the field and the opponents (Team B) gain possession of the ball. The referee stops play and awards a dropped ball to the Team B. Where should the referee drop the ball?",
+                englishDecision: "The ball is dropped at its position when play was stopped.",
+                koreanSituation: "팀 A가 골킥을 실시한 후, 볼이 페널티 에어리어 밖의 주심을 맞고 필드 안에 머물렀으나 상대(팀 B)가 볼의 소유권을 얻었다. 주심은 플레이를 중단하고 팀 B에게 드롭볼을 부여한다. 주심은 어디에서 볼을 드롭해야 하는가?",
+                koreanDecision: "플레이가 중단되었을 때 볼의 위치에서 드롭한다.",
+                keyPoint: "제8조/제9조: 심판진 접촉으로 인한 소유권 변경은 플레이 중단 사유이며, 페널티 에어리어 밖이라면 중단 시점의 볼 위치에서 드롭볼을 실시한다"
+            },
+            {
+                title: "주심 접촉 후 원래 소유 팀이 유망한 공격을 시작한 경우",
+                englishSituation: "(The ball) which then touches the referee (outside the penalty area), remains on the field of play and, as a result, Team A starts a promising attack. What is the referee’s decision?",
+                englishDecision: "The ball is out of play when it touches a match official and a team starts a promising attack. In this case, play is restarted with a dropped ball for one player of Team A at the position of the ball when play was stopped by the referee, because Team A had possession at that time.",
+                koreanSituation: "(볼이) 페널티 에어리어 밖의 주심을 맞고 경기장 안에 머물렀으나, 그 결과 팀 A가 유망한 공격을 시작했다. 주심의 판정은 무엇인가?",
+                koreanDecision: "볼이 심판진에게 닿고 어느 한 팀이 유망한 공격을 시작하면 볼은 아웃 오브 플레이다. 이 경우 주심은 플레이를 중단시킨 시점의 위치에서 팀 A의 선수 한 명에게 드롭볼을 실시하여 재개한다. 당시 팀 A가 소유권을 가지고 있었기 때문이다.",
+                keyPoint: "제9조 유망한 공격: 심판진 접촉이 유망한 공격으로 이어지면 중단 후 드롭볼을 실시하며, 소유권을 유지하고 있던 팀에게 볼을 준다"
+            }
+        ];
+
+        const container = document.getElementById('rules-container');
+
+        rulesData.forEach((rule, index) => {
+            const ruleElement = document.createElement('div');
+            ruleElement.className = 'border-2 border-slate-700 rounded-lg bg-slate-800/50 backdrop-blur-sm card-glow transition-all duration-300 hover:border-cyan-400';
+            
+            ruleElement.innerHTML = `
+                <button class="accordion-toggle w-full text-left p-4 md:p-6 flex justify-between items-center cursor-pointer">
+                    <h2 class="text-lg md:text-xl font-semibold text-cyan-300">
+                        <span class="mr-2">${index + 1}.</span> ${rule.title}
+                    </h2>
+                    <span class="toggle-icon text-cyan-400 text-2xl transform transition-transform duration-300">▶</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-4 md:p-6 border-t border-slate-700">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="text-xl font-bold text-fuchsia-400 mb-3">❓ 상황 (Korean)</h3>
+                                <p class="text-gray-300 whitespace-pre-line">${rule.koreanSituation}</p>
+                                <h3 class="text-xl font-bold text-fuchsia-400 mt-4 mb-3">✅ 올바른 판정</h3>
+                                <p class="text-gray-300 whitespace-pre-line">${rule.koreanDecision}</p>
+                            </div>
+                            <div class="border-t md:border-t-0 md:border-l border-slate-600 pl-0 md:pl-6 pt-6 md:pt-0">
+                                <h3 class="text-xl font-bold text-gray-400 mb-3">Situation (English)</h3>
+                                <p class="text-gray-400 italic whitespace-pre-line">${rule.englishSituation}</p>
+                                <h3 class="text-xl font-bold text-gray-400 mt-4 mb-3">Correct Decision</h3>
+                                <p class="text-gray-400 italic whitespace-pre-line">${rule.englishDecision}</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 p-4 rounded-lg bg-cyan-900/30 border border-cyan-700">
+                            <h4 class="text-lg font-bold text-cyan-200 mb-2">🔑 핵심포인트</h4>
+                            <p class="text-cyan-200 whitespace-pre-line">${rule.keyPoint}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(ruleElement);
+        });
+
+        const toggles = document.querySelectorAll('.accordion-toggle');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('.toggle-icon');
+
+                // Close all other accordions
+                toggles.forEach(otherToggle => {
+                    if (otherToggle !== toggle) {
+                        otherToggle.nextElementSibling.classList.remove('open');
+                        otherToggle.querySelector('.toggle-icon').classList.remove('rotate-90');
+                    }
+                });
+
+                // Toggle the clicked accordion
+                content.classList.toggle('open');
+                icon.classList.toggle('rotate-90');
+            });
+        });
+    </script>
+</body>
+</html>
